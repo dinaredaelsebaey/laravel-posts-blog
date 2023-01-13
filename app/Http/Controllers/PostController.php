@@ -31,7 +31,7 @@ class PostController extends Controller
         $request->validate([
             'title'=>'string|unique:posts',
             'content'=>'string|min:20',
-            'img'=>'image|mimes:JPG,jpg,png|max:2M'
+            'img'=>'required|image|mimes:JPG,jpg,png|max:2048'
 
          ]);
 
@@ -69,7 +69,7 @@ class PostController extends Controller
         $request->validate([
             'title'=>'string|unique:posts',
             'content'=>'string|min:20',
-            'img'=>'image|mimes:JPG,jpg,png|max:2M'
+            'img'=>'nullable|image|mimes:JPG,jpg,png|max:2M'
 
          ]);
 
@@ -89,6 +89,7 @@ class PostController extends Controller
            'title'=>$title,
            'auther'=>$auther,
            'content'=>$content,
+           'img'=>$name,
   
         ]);
         return redirect(route('posts.index',$id));
