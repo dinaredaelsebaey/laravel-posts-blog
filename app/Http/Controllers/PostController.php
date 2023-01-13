@@ -29,9 +29,9 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title'=>'unique|string',
+            'title'=>'string|unique:posts',
             'content'=>'string|min:20',
-            'img'=>'image|max:2M|mimes:JPG,jpg,png'
+            'img'=>'image|mimes:JPG,jpg,png|max:2M'
 
          ]);
 
@@ -66,9 +66,24 @@ class PostController extends Controller
     }
     public function update(Request $request, $id){
         
-        $title=$request->title;
-        $auther=$request->auther;
-        $content=$request->content;
+        $request->validate([
+            'title'=>'string|unique:posts',
+            'content'=>'string|min:20',
+            'img'=>'image|mimes:JPG,jpg,png|max:2M'
+
+         ]);
+
+         //receive img object 
+         $image=$request->file('img');
+         //put extension
+         $ext=$image->getClientOriginalExtension();
+         //put name to img
+         $name=uniqid() . ".$ext";
+         //move img
+         $image->move(public_path('uploads/imgs'),$name);
+         $title=$request->title;
+         $auther=$request->auther;
+         $content=$request->content;
         
         Post::findOrFail($id)->update([
            'title'=>$title,
