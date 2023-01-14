@@ -10,7 +10,8 @@
 <ul>
 
     @foreach($post->comments as $comment)
-    <li>{{$comment->comment}}</li>
+
+    <li>{{$comment->comment}} <span><a href="{{route('comments.delete',$comment->id)}}" class="btn btn-danger" type="button" >Delete </a></span></li>
     @endforeach
 
 </ul>

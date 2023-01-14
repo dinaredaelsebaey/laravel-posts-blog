@@ -31,18 +31,20 @@ class PostController extends Controller
         $request->validate([
             'title'=>'string|unique:posts',
             'content'=>'string|min:20',
-            'img'=>'required|image|mimes:JPG,jpg,png|max:2048'
-
+            'img'=>'nullable|image|mimes:JPG,jpg,png|max:2048'
          ]);
 
          //receive img object 
          $image=$request->file('img');
-         //put extension
-         $ext=$image->getClientOriginalExtension();
-         //put name to img
-         $name=uniqid() . ".$ext";
-         //move img
-         $image->move(public_path('uploads/imgs'),$name);
+         $name = "";
+         if($image){
+            //put extension
+            $ext=$image->getClientOriginalExtension();
+            //put name to img
+            $name=uniqid() . ".$ext";
+            //move img
+            $image->move(public_path('uploads/imgs'),$name);
+         }
         $title=$request->title;
         $auther=$request->auther;
         $content=$request->content;

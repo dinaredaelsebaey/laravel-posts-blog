@@ -32,7 +32,7 @@
                     <a href="{{route('posts.delete',$post->id)}}" class="btn btn-danger" type="button" >Delete </a>
                     </td>
                     <td>
-                        <a href="#" class="btn btn-secondary" type="button" >Comment </a>
+                        <a href="{{route('comments.create',$post->id)}}" class="btn btn-secondary" type="button" >Comment </a>
                     </td>
                 </tr>
                 @endforeach

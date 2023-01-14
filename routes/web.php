@@ -28,12 +28,15 @@ Route::post('/posts/store', [PostController::class, 'store'])->name('posts.store
 
 
 Route::get('/posts/show/{id}', [PostController::class, 'show'])->name('posts.show');
-
 Route::get('/posts/edit{id}', [PostController::class, 'edit'])->name('posts.edit');
 Route::post('/posts/update{id}', [PostController::class, 'update'])->name('posts.update');
-
 Route::get('/posts/delete{id}', [PostController::class, 'delete'])->name('posts.delete');
 
+
+//Route::get('/posts/{id}/comments', [CommentController::class, 'index'])->name('comments.index');
+Route::get('/posts/{id}/comments/create', [CommentController::class, 'create'])->name('comments.create');
+Route::post('/posts/{post_id}/comments/store', [CommentController::class, 'store'])->name('comments.store');
+Route::get('/comments/delete/{id}', [CommentController::class, 'delete'])->name('comments.delete');
 
 
 
