@@ -58,7 +58,7 @@ class PostController extends Controller
             'img'=>$name,
             
          ]);
-         return redirect(route('posts.create'));
+         return redirect(route('posts.index'));
     }
 
     public function edit($id)
