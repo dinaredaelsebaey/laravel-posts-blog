@@ -14,13 +14,12 @@ class PostController extends Controller
         return view('posts.index',[
             'posts' => $posts
         ]);
-     }
+    }
     public function create()
     {
         if(Auth::check()){
             return view('posts.create');
         }
-        
         return redirect("login");
     }
     public function show($id)
@@ -30,7 +29,6 @@ class PostController extends Controller
             'post' => $post,
         ]);
     }
-
     public function store(Request $request)
     {
         $request->validate([
@@ -38,7 +36,6 @@ class PostController extends Controller
             'content'=>'string|min:20',
             'img'=>'nullable|image|mimes:JPG,jpg,png|max:2048'
          ]);
-
          //receive img object 
          $image=$request->file('img');
          $name = "";
@@ -50,9 +47,9 @@ class PostController extends Controller
             //move img
             $image->move(public_path('uploads/imgs'),$name);
          }
-        $title=$request->title;
-        $auther=$request->auther;
-        $content=$request->content;
+            $title=$request->title;
+            $auther=$request->auther;
+            $content=$request->content;
          
          Post::create([
             'title'=>$title,
@@ -71,7 +68,8 @@ class PostController extends Controller
             //'users' => User::all(),
         ]);
     }
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
         
         $request->validate([
             'title'=>'string|unique:posts',
@@ -80,14 +78,14 @@ class PostController extends Controller
 
          ]);
 
-         //receive img object 
          $image=$request->file('img');
-         //put extension
+         $name="";
+         if($image){
          $ext=$image->getClientOriginalExtension();
-         //put name to img
          $name=uniqid() . ".$ext";
-         //move img
          $image->move(public_path('uploads/imgs'),$name);
+         }
+
          $title=$request->title;
          $auther=$request->auther;
          $content=$request->content;
@@ -100,10 +98,11 @@ class PostController extends Controller
   
         ]);
         return redirect(route('posts.index',$id));
-        }
+    }
 
-        public function delete($id){
+    public function delete($id)
+    {
             Post::findOrFail($id)->delete();
             return redirect(route('posts.index'));
-         }
+    }
 }
