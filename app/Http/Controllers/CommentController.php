@@ -32,11 +32,9 @@ class CommentController extends Controller
 
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'title'=>'string|unique:posts',
-        //     'content'=>'string|min:20',
-        //     'img'=>'required|image|mimes:JPG,jpg,png|max:2048'
-        //  ]);
+        $request->validate([
+            'comment'=>'required|string|min:5'
+         ]);
 
          
         $post_id=$request->post_id;
@@ -52,9 +50,7 @@ class CommentController extends Controller
          return redirect()->route('posts.show',[
             'id' => $post_id
          ]);
-        //  return redirect(route('posts.show',[
-        //     'id' => $post_id
-        //  ]));
+
     }
 
     public function delete($id) {
@@ -64,46 +60,5 @@ class CommentController extends Controller
         return redirect()->route('posts.show',['id' => $post_id]);
      }
 
-    // public function edit($id)
-    // {
-    //     return view('posts.edit', [
-    //         'post' => Post::findOrFail($id),
-    //         //'users' => User::all(),
-    //     ]);
-    // }
-    // public function update(Request $request, $id){
-        
-    //     $request->validate([
-    //         'title'=>'string|unique:posts',
-    //         'content'=>'string|min:20',
-    //         'img'=>'nullable|image|mimes:JPG,jpg,png|max:2M'
-
-    //      ]);
-
-    //      //receive img object 
-    //      $image=$request->file('img');
-    //      //put extension
-    //      $ext=$image->getClientOriginalExtension();
-    //      //put name to img
-    //      $name=uniqid() . ".$ext";
-    //      //move img
-    //      $image->move(public_path('uploads/imgs'),$name);
-    //      $title=$request->title;
-    //      $auther=$request->auther;
-    //      $content=$request->content;
-        
-    //     Post::findOrFail($id)->update([
-    //        'title'=>$title,
-    //        'auther'=>$auther,
-    //        'content'=>$content,
-    //        'img'=>$name,
-  
-    //     ]);
-    //     return redirect(route('posts.index',$id));
-    //     }
-
-    //     public function delete($id){
-    //         Post::findOrFail($id)->delete();
-    //         return redirect(route('posts.index'));
-    //      }
+    
 }
