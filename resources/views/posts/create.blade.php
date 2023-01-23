@@ -11,7 +11,6 @@
 @endif
 
 
-
 <form method="POST" action="{{route('posts.store')}}" enctype="multipart/form-data">
     @csrf
     <div class="container">

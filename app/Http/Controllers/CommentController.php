@@ -9,13 +9,7 @@ use App\Models\Post;
 use App\Models\User;
 class CommentController extends Controller
 {
-    public function index(Request $request)
-    {
-        $comments = Comment::all();    
-        return view('comments.index',[
-            'comments' => $comments
-        ]);
-     }
+
     public function create($id)
     {
         if(Auth::check())
@@ -52,7 +46,35 @@ class CommentController extends Controller
          ]);
 
     }
+    public function edit($id)
+    {
+        $comment = Comment::findOrFail($id);
+        return view('comments.edit', [
+            'comment' => $comment
+            
+        ]);
+    }
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'comment'=>'string|min:5'
+         ]);
 
+        $post_id=$request->post_id;
+        $user_id=Auth::id();
+        $comment=$request->comment;
+         
+        Comment::findOrFail($id)->update([
+            'post_id'=>$post_id,
+            'user_id'=>$user_id,
+            'comment'=>$comment,
+         ]);
+         
+         return redirect()->route('posts.index',[
+            'id' => $post_id
+         ]);
+
+    }
     public function delete($id) {
         $comment = Comment::findOrFail($id);
         $post_id = $comment->post_id;

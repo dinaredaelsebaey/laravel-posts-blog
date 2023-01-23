@@ -63,19 +63,19 @@ class PostController extends Controller
 
     public function edit($id)
     {
+        $post=Post::findOrFail($id);
         return view('posts.edit', [
-            'post' => Post::findOrFail($id),
+            'post' => $post
             //'users' => User::all(),
         ]);
     }
+    
     public function update(Request $request, $id)
     {
-        
         $request->validate([
-            'title'=>'string|unique:posts',
+            'title'=>'string',
             'content'=>'string|min:20',
             'img'=>'nullable|image|mimes:JPG,jpg,png|max:2M'
-
          ]);
 
          $image=$request->file('img');

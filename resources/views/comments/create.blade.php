@@ -24,7 +24,7 @@
       
     <div class="mb-3">
       <label  class="form-label">Comment</label>
-      <textarea name="comment" class="form-control" id="exampleInputPassword1"></textarea>
+      <textarea name="comment" class="form-control" id="exampleInputPassword1">{{old('comment')}}</textarea>
     </div>
 
 
