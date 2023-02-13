@@ -17,15 +17,15 @@ use App\Models\User;
 |
 */
 
-Route::get('/dashboard', function () {
+Route::get('/', function () {
     return view('welcome');
     //return "hello dina";
 });
  
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
-Route::get('/posts/show/{id}', [PostController::class, 'show'])->name('posts.show');
+Route::get('/post/show/{id}', [PostController::class, 'show'])->name('posts.show');
 
-Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
+Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create')->middleware('auth');
 Route::post('/posts/store', [PostController::class, 'store'])->name('posts.store');
 
 Route::get('/posts/edit{id}', [PostController::class, 'edit'])->name('posts.edit');
@@ -36,11 +36,10 @@ Route::get('/posts/delete{id}', [PostController::class, 'delete'])->name('posts.
 
 
 // Route::get('/comments/show/{id}', [CommentController::class, 'show'])->name('comments.show');
-Route::get('/posts/{id}/comments/create', [CommentController::class, 'create'])->name('comments.create');
+Route::get('/posts/{id}/comments/create', [CommentController::class, 'create'])->name('comments.create')->middleware('auth');
 Route::post('/posts/{post_id}/comments/store', [CommentController::class, 'store'])->name('comments.store');
 Route::get('/posts/{id}/comments/edit', [CommentController::class, 'edit'])->name('comments.edit');
 Route::post('/posts/{post_id}/comments/update', [CommentController::class, 'update'])->name('comments.update');
-
 Route::get('/comments/delete/{id}', [CommentController::class, 'delete'])->name('comments.delete');
 
 
