@@ -89,7 +89,6 @@ class PostController extends Controller
          $title=$request->title;
          $auther=$request->auther;
          $content=$request->content;
-        
         Post::findOrFail($id)->update([
            'title'=>$title,
            'auther'=>$auther,

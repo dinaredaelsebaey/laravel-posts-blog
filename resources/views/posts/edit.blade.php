@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-edit book {{$post->title}}
+edit post {{$post->title}}
 @endsection
 
 @section('content')

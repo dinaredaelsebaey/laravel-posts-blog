@@ -55,4 +55,12 @@ class PostController extends Controller
 
         return new PostResource($myPost);
     }
+
+    // public function edit($id)
+    // {
+    //     $post=Post::findOrFail($id);
+    //     return [
+    //         'title' => $post->title,
+    //     ];
+    // }
 }

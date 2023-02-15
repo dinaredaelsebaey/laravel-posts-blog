@@ -28,12 +28,16 @@ Route::get('/', function () {
 });
 
 Route::get('/posts', [PostController::class, 'index'])->middleware('auth:sanctum');
-Route::get('/post/{id}', [PostController::class, 'show']);
+Route::get('/post/{id}', [PostController::class, 'show'])->middleware('auth:sanctum');
 Route::post('/post', [PostController::class, 'store'])->middleware('auth:sanctum');
+// Route::get('/post/edit', [PostController::class, 'edit']);
+// Route::post('/post/update{id}', [PostController::class, 'update'])->middleware('auth:sanctum');
 
-Route::get('/comments', [CommentController::class, 'index']);
-Route::get('/comment/{id}', [CommentController::class, 'show']);
-Route::post('/comment', [CommentController::class, 'store']);
+
+
+Route::get('/comments', [CommentController::class, 'index'])->middleware('auth:sanctum');
+Route::get('/comment/{id}', [CommentController::class, 'show'])->middleware('auth:sanctum');
+Route::post('/comment', [CommentController::class, 'store'])->middleware('auth:sanctum');
 
 
 //to generate token with sanctum package
