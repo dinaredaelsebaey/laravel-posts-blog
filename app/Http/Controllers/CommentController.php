@@ -9,7 +9,7 @@ use App\Models\Post;
 use App\Models\User;
 class CommentController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
         $comments = Comment::all();    
         return view('comments.index',[

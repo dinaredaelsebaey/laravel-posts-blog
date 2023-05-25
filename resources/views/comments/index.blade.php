@@ -4,19 +4,17 @@
         <div class="col-sm-6">
             <h1>All comments</h1>
         </div>
-        <a href="{{route('comments.create')}}" class="btn btn-primary" type="button" >Create Comment
-        </a>
         <table class="table table-striped">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">comment</th>
-                       
+                        <th scope="col">Comment</th>
+                        <th scope="col">Action</th>
                 </thead>
             <tbody>
                 @foreach ($comments as $comment)
                 <tr id="{{$comment->id}}"> 
-
+                    <td>{{$comment->id}}</td>
                     <td>{{$comment->comment}}</td>
                     <td>    <a href="{{route('comments.show',$comment->id)}}" class="btn btn-primary" type="button" >Show </a>
                     </td>

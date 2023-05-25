@@ -29,8 +29,12 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <a class="nav-link" href="{{route('posts.index')}}">Posts</a>
+                        
+                   
+                        
+                        <a class="nav-link" href="{{route('comments.index')}}">Comments</a>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

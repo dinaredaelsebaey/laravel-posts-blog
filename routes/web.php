@@ -33,7 +33,7 @@ Route::post('/posts/update{id}', [PostController::class, 'update'])->name('posts
 
 Route::get('/posts/delete{id}', [PostController::class, 'delete'])->name('posts.delete');
 
-
+Route::get('/comments', [CommentController::class, 'index'])->name('comments.index');
 Route::get('/posts/{id}/comments/create', [CommentController::class, 'create'])->name('comments.create')->middleware('auth');
 Route::get('/comment/show/{id}', [CommentController::class, 'show'])->name('comments.show');
 Route::post('/posts/{post_id}/comments/store', [CommentController::class, 'store'])->name('comments.store');
@@ -42,7 +42,6 @@ Route::post('/posts/{post_id}/comments/update', [CommentController::class, 'upda
 Route::get('/comments/delete/{id}', [CommentController::class, 'delete'])->name('comments.delete');
 
 // if separate comments from posts
-//Route::get('/comments', [CommentController::class, 'index'])->name('comments.index');
 //Route::get('/comments/create', [CommentController::class, 'create'])->name('comments.create')->middleware('auth');
 // Route::get('/comments/edit/{id}', [CommentController::class, 'edit'])->name('comments.edit');
 // Route::post('/comments/update/{id}', [CommentController::class, 'update'])->name('comments.update');
