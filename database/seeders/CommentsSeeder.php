@@ -23,14 +23,16 @@ class CommentsSeeder extends Seeder
     public function run()
     {
 
-        DB::table('comments')->insert([
-            'comment' => 'seeder comment',
-            'post_id' => rand(1, 50),
-            'user_id' => rand(1, 50),
-            'deleted_at' => $this->faker->dateTimeBetween('-1 month', '+1 month'),
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        Comment::factory(100)->create();
+
+        // DB::table('comments')->insert([
+        //     'comment' => 'seeder comment',
+        //     'post_id' => rand(1, 50),
+        //     'user_id' => rand(1, 50),
+        //     'deleted_at' => $this->faker->dateTimeBetween('-1 month', '+1 month'),
+        //     'created_at' => now(),
+        //     'updated_at' => now(),
+        // ]);
 
     }
 }
