@@ -23,7 +23,7 @@ class CommentsSeeder extends Seeder
     public function run()
     {
 
-        Comment::factory(100)->create();
+        Comment::factory(50)->create();
 
         // DB::table('comments')->insert([
         //     'comment' => 'seeder comment',
